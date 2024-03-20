@@ -1,5 +1,6 @@
 import random
 
+
 # Lista de palabras posibles
 words = ["python", "programación", "computadora", "código", "desarrollo",
 "inteligencia"]
@@ -22,6 +23,11 @@ for i in range(max_attempts):
 
     # Pedir al jugador que ingrese una letra
     letter = input("Ingresa una letra: ").lower()
+    
+    #Se evita que se de por acierto un ingreso vacío
+    if len(letter) == 0:
+        print("Error.No has ingresado ninguna letra")
+        continue
 
     # Verificar si la letra ya ha sido adivinada
     if letter in guessed_letters:
