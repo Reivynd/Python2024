@@ -14,9 +14,26 @@ max_fails = 10
 # Lista para almacenar las letras adivinadas
 guessed_letters = []
 print("¡Bienvenido al juego de adivinanzas!")
+
+# Selección de nivel
+print("Seleccione un nivel de dificultad")
+print("Ingrese 1 para dificultad fácil:")
+nivel = int(input())
+while nivel < 1 or nivel > 1:
+    print("Seleccione un nivel de dificultad válido")
+    print("Ingrese 1 para dificultad fácil:")
+    nivel = int(input())
 print("Estoy pensando en una palabra. ¿Puedes adivinar cuál es?")
-word_displayed = "_" * len(secret_word)
-# Mostrarla palabra parcialmente adivinada
+word_displayed = ""
+
+# Mostrar la palabra con pistas para nivel fácil}
+if nivel == 1:
+    for letter in secret_word:
+        if letter in "aeiou":
+            word_displayed += letter
+        else:
+            word_displayed += "-"
+
 print(f"Palabra: {word_displayed}")
 
 while max_fails > 0:
@@ -45,15 +62,15 @@ while max_fails > 0:
         max_fails -= 1
         print("Lo siento, la letra no está en la palabra.")
  
-    # Mostrar la palabra parcialmente adivinada
-    letters = []
-    for letter in secret_word:
-        if letter in guessed_letters:
-           letters.append(letter)
-        else:
-           letters.append("_")
-          
-    word_displayed = "".join(letters)
+    # Mostrar la palabra parcialmente adivinada para nivel fácil
+    if nivel==1:
+       word_displayed = ""
+       for char in secret_word:
+          if char in guessed_letters or char in "aeiou":
+              word_displayed += char
+          else:
+              word_displayed += "-"
+    
     print(f"Palabra: {word_displayed}")
  
     # Verificar si se ha adivinado la palabra completa
