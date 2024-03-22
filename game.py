@@ -19,11 +19,13 @@ print("¡Bienvenido al juego de adivinanzas!")
 print("Seleccione un nivel de dificultad:")
 print("-Ingrese 1 para dificultad fácil:")
 print("-Ingrese 2 para dificultad media:")
+print("-Ingrese 3 para dificultad difícil:")
 nivel = int(input())
-while nivel < 1 or nivel > 2:
+while nivel < 1 or nivel > 3:
     print("Seleccione un nivel de dificultad válido")
     print("Ingrese 1 para dificultad fácil:")
     print("Ingrese 2 para dificultad media:")
+    print("-Ingrese 3 para dificultad difícil:")
     nivel = int(input())
 print("Estoy pensando en una palabra. ¿Puedes adivinar cuál es?")
 word_displayed = ""
@@ -46,6 +48,11 @@ elif nivel == 2:
     word_normal += secret_word[-1]
     
     print(word_normal)
+
+# Mostrar la palabra con pistas para nivel difícil
+else:
+    word_displayed = "_" * len(secret_word)
+    print(f"Palabra: {word_displayed}")
 
 while max_fails > 0:
 
@@ -93,6 +100,16 @@ while max_fails > 0:
           else:
              new_word += "-"
        word_displayed = first_char + new_word + last_char
+
+    # Mostrar la palabra parcialmente adivinada para nivel difícil
+    else:
+       letters = []
+       for letter in secret_word:
+          if letter in guessed_letters:
+             letters.append(letter)
+          else:
+            letters.append("_")
+       word_displayed = "".join(letters)  
     
     print(f"Palabra: {word_displayed}")
  
